@@ -10,6 +10,10 @@ import (
 
 // Config represents a configuration file.
 type Config struct {
+	Proxy struct {
+		Protocol string `toml:"protocol"`
+		URL      string `toml:"url"`
+	} `toml:"proxy"`
 }
 
 // New creates an instance of Config.
