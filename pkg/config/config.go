@@ -14,6 +14,8 @@ type Config struct {
 		Protocol string `toml:"protocol"`
 		URL      string `toml:"url"`
 	} `toml:"proxy"`
+
+	Workers int `toml:"workers"`
 }
 
 // New creates an instance of Config.
