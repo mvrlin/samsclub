@@ -188,7 +188,7 @@ func (sc *SamsClub) handleAccount(a *Account) {
 	var err error
 
 	for {
-		time.Sleep(3 * time.Second)
+		time.Sleep(time.Second)
 
 		if len(sc.ProxyList) == 0 {
 			continue
