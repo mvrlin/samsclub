@@ -69,10 +69,7 @@ func (sc *SamsClub) GetProxies() error {
 		wg.Wait()
 		total := len(sc.ProxyList)
 
-		if total == 0 {
-			log.Println("No valid proxies found. Trying again..")
-		} else {
-			log.Printf("Proxies are successfully loaded (%d)\n", len(sc.ProxyList))
+		if total > 0 {
 			break
 		}
 	}
