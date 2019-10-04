@@ -20,7 +20,16 @@ type SamsClub struct {
 func (sc *SamsClub) Run() error {
 	var err error
 
+	go func() {
+		for {
 	if err = sc.GetProxies(); err != nil {
+				log.Fatalln(err)
+				break
+			}
+
+			time.Sleep(30 * time.Second)
+		}
+	}()
 		return err
 	}
 
