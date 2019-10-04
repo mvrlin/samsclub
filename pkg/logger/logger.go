@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"path"
@@ -40,7 +41,13 @@ func Write(fileName string, text string) error {
 	}
 	defer file.Close()
 
-	if _, err = file.WriteString(fmt.Sprintf("%s\n", text)); err != nil {
+	w := bufio.NewWriter(file)
+
+	if _, err = fmt.Fprintf(w, "%s\n", text); err != nil {
+		return err
+	}
+
+	if err = w.Flush(); err != nil {
 		return err
 	}
 
