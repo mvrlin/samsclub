@@ -73,7 +73,7 @@ func (a *Account) Authenticate() error {
 		return err
 	}
 
-	if ra.Status == "SUCCESS" {
+	if ra.Status == "SUCCESS" && ra.Member.FirstName != "" {
 		a.Data.Member = ra.Member
 
 		a.Cookies = resp.Cookies()
