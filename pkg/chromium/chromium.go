@@ -7,10 +7,9 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/cavaliergopher/grab/v3"
 	"github.com/cheggaaa/pb/v3"
 	"github.com/mholt/archiver"
-
-	"github.com/cavaliercoder/grab"
 )
 
 func getExecutablePath(localPath string) string {
@@ -65,7 +64,7 @@ func Download() (string, error) {
 	t := time.NewTicker(500 * time.Millisecond)
 	defer t.Stop()
 
-	bar := pb.New64(resp.Size)
+	bar := pb.New64(resp.Size())
 	bar.SetTemplateString(`{{ "Downloading" }} ({{ percent . }}) {{ bar . "[" "=" "=" "." "]"}} {{ speed . }}`)
 	bar.Set(pb.Bytes, true)
 	bar.Start()
@@ -77,7 +76,7 @@ func Download() (string, error) {
 				bar.SetCurrent(resp.BytesComplete())
 
 			case <-resp.Done:
-				bar.SetCurrent(resp.Size)
+				bar.SetCurrent(resp.Size())
 				bar.Finish()
 
 				return
